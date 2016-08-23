@@ -1,0 +1,23 @@
+<section ng-controller="DashboardController">
+  <div class="jumbotron text-center main-jumbotron">
+    <div class="row">
+      <div  class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
+        <img alt="Shared.com" class="img-responsive text-center" src="modules/core/client/img/brand/logo2.png" />
+      </div>
+    </div>
+    <br>
+    <h1>Dashboard</h1>
+
+    <div class="row">
+      <p ng-hide="authentication.user">
+        <a class="btn btn-primary-shared btn-lg" href="authentication/signin" >Sign In</a>
+      </p>
+      <p ng-show="authentication.user">
+        <a class="btn btn-primary-shared btn-lg" href="settings/profile" >Settings</a>
+      </p>
+    </div>
+  </div>
+
+
+
+</section>

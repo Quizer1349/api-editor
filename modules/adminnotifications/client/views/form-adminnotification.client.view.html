@@ -1,0 +1,24 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.adminnotification._id ? 'Edit' : 'New'}} Bulk Message</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.adminnotificationForm" class="form-horizontal" ng-submit="vm.save(vm.form.adminnotificationForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="name">Message Text</label>
+          <input name="text" type="text" ng-model="vm.adminnotification.text" id="name" class="form-control" placeholder="Message Text" required>
+          <div ng-messages="vm.form.adminnotificationForm.text.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Adminnotification text is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">{{vm.adminnotification._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

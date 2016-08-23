@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header">
+    <h1>Settings</h1>
+  </div>
+  <div tasty-table bind-resource-callback="vm.getResource" bind-init="vm.init"   bind-filters="vm.filterBy" watch-resource="collection" class="container">
+    <table data-ng-show="rows.length !== 0" class="table ng-tasty table-striped">
+      <thead tasty-thead bind-not-sort-by="vm.notSortBy">
+      </thead>
+      <tbody>
+      <tr data-ui-sref="appsettings.view({ appsettingId: row._id })" data-ng-repeat="(index,row) in rows">
+        <td data-ng-bind="row.name"></td>
+        <td data-ng-bind="row.value"></td>
+      </tr>
+      </tbody>
+    </table>
+    <div tasty-pagination data-ng-show="rows.length !== 0"></div>
+  </div>
+
+  <div class="alert alert-warning text-center" data-ng-if="vm.appsetting.$resolved && !vm.appsetting.length">
+    There are no Appsettings
+  </div>
+</section>

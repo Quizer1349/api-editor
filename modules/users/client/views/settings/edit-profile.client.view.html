@@ -1,0 +1,93 @@
+<section class="row" ng-controller="EditProfileController">
+  <div class="col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4">
+    <form name="userForm" ng-submit="updateUserProfile(userForm.$valid)" class="signin" novalidate autocomplete="off">
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstName" class="form-control" ng-model="user.firstName" placeholder="First Name" required>
+          <div ng-messages="userForm.firstName.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">First name is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="lastName" class="form-control" ng-model="user.lastName" placeholder="Last Name" required>
+          <div ng-messages="userForm.lastName.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Last name is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" class="form-control" ng-model="user.email" placeholder="Email" lowercase required>
+          <div ng-messages="userForm.email.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Email address is required.</p>
+            <p class="help-block error-text" ng-message="email">Email address is invalid.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="emailAlert">Send Email Alert:
+            <input name="emailAlert" id="emailAlert" type="checkbox" ng-model="user.emailAlert"
+                   ng-true-value=true ng-false-value=false>
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="facebookId">Facebook ID</label>
+          <label id="facebookId"  class="form-control" ng-bind="user.providerData.id"></label>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label for="messenger">Messenger ID</label>
+          <input type="text" id="messenger" name="messengerId" class="form-control" ng-model="user.messengerId" placeholder="Messenger ID" lowercase>
+          <div ng-messages="userForm.messengerId.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Messenger ID is required.</p>
+            <p class="help-block error-text" ng-message="email">Messenger ID is invalid.</p>
+          </div>
+        </div>
+        <div class="fb-send-to-messenger"
+             messenger_app_id="269893783376466"
+             page_id="873600836041133"
+             data-ref="{{user.providerData.id}}"
+             color="blue"
+             size="standard">
+        </div>
+        <div class="form-group" show-errors>
+          <label for="messengerAlert">Send Messenger Alert:
+            <input name="messengerAlert" id="messengerAlert" type="checkbox" ng-model="user.messengerAlert"
+                   ng-true-value=true ng-false-value=false>
+          </label>
+        </div>
+
+        <div class="form-group " show-errors>
+          <label for="email">Phone</label>
+          <input type="text" id="phone" name="phone" class="form-control " ng-model="user.phone" placeholder="Phone i.e 613-123-4567" disabled>
+        </div>
+
+        <div ng-messages="userForm.phone.$error" role="alert"></div>
+        <div class="form-group disabled" show-errors>
+
+          <label for="smsAlert">Send SMS Alert:
+            <input name="smsAlert" type="checkbox" id="smsAlert" ng-model="user.smsAlert"
+                   ng-true-value=true ng-false-value=false disabled>
+          </label>
+        </div>
+
+        <div class="form-group hidden" show-errors>
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" class="form-control" ng-model="user.username" placeholder="Username" lowercase required>
+          <div ng-messages="userForm.username.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Username is required.</p>
+          </div>
+        </div>
+        <div class="text-center form-group">
+          <button type="submit" class="btn btn-primary">Save Profile</button>
+        </div>
+        <div ng-show="success" class="text-center text-success">
+          <strong>Profile Saved Successfully</strong>
+        </div>
+        <div ng-show="error" class="text-center text-danger">
+          <strong ng-bind="error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

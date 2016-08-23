@@ -1,0 +1,62 @@
+<section>
+
+
+
+  <div class="container">
+    <h2>Contextual Classes</h2>
+    <p>Contextual classes can be used to color table rows or table cells. The classes that can be used are: .active, .success, .info, .warning, and .danger.</p>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="success">
+        <td>John</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+      </tr>
+      <tr class="danger">
+        <td>Mary</td>
+        <td>Moe</td>
+        <td>mary@example.com</td>
+      </tr>
+      <tr class="info">
+        <td>July</td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+  <div class="page-header">
+    <h1 data-ng-bind="vm.alert.name"></h1>
+  </div>
+  <div class="pull-right"
+       data-ng-show="vm.alert.isCurrentUserOwner">
+    <a class="btn btn-primary"
+       data-ui-sref="alerts.edit({ alertId: vm.alert._id })">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" data-ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <small>
+    <em class="text-muted">
+      Posted on
+      <span data-ng-bind="vm.alert.created | date:'mediumDate'"></span>
+      by
+      <span data-ng-if="vm.alert.user"
+            data-ng-bind="vm.alert.user.displayName"></span>
+      <span data-ng-if="!vm.alert.user">Deleted User</span>
+    </em>
+  </small>
+  <p class="lead" data-ng-bind="vm.alert.content"></p>
+</section>

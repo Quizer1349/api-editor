@@ -1,0 +1,38 @@
+<section>
+  <div class="page-header">
+    <h1>Bulk Messages</h1>
+    <a data-ui-sref="admin.adminnotifications.create" class="btn btn-success">Add Message</a>
+  </div>
+  <div tasty-table bind-resource-callback="vm.getResource" bind-init="vm.init"   bind-filters="vm.filterBy" watch-resource="collection" class="container">
+    <table data-ng-show="rows.length !== 0" class="table ng-tasty table-striped">
+      <thead tasty-thead bind-not-sort-by="vm.notSortBy">
+      </thead >
+      <tbody>
+      <tr data-ng-repeat="(index, row) in rows">
+        <td data-ng-bind="row.text"></td>
+        <td data-ng-bind="row.status"></td>
+        <td data-ng-bind="row.created| date :'MMM d yyyy, hh:mm a'"></td>
+        <td>
+          <div>
+            <a class="btn btn-primary btn-sm"
+               data-ui-sref="admin.adminnotifications.edit({ adminnotificationId: row._id })" title="Edit">
+              <i class="glyphicon glyphicon-edit"></i>
+            </a>
+            <a class="btn btn-primary btn-sm" data-ng-click="vm.remove(row, index)" title="Remove">
+              <i class="glyphicon glyphicon-trash"></i>
+            </a>
+            <a class="btn btn-success btn-sm" data-ng-click="vm.send(row)" title="Send">
+              <i class="glyphicon glyphicon-send"></i>
+            </a>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div tasty-pagination data-ng-show="rows.length !== 0"></div>
+    <div class="alert alert-warning text-center" data-ng-if="rows.length === 0">
+      There are no Admin Notifications yet
+    </div>
+  </div>
+
+</section>

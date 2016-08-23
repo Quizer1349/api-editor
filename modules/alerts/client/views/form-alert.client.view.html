@@ -1,0 +1,106 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.alert._id ? 'Edit Alert' : 'New Alert'}}</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.alertForm" class="form-horizontal" ng-submit="vm.save(vm.form.alertForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group">
+          <label class="story-label">For any active Ads under:</label>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label label-inline" for="adAccount">Ad Account:</label>
+          <ui-select id="adAccount" ng-model="vm.alert.adaccount_id" theme="select2" style="width: 50%"  title="Choose an Ad Account" append-to-body="false" ng-change="changeAdaccount()">
+            <ui-select-match placeholder="Select Ad Account">{{$select.selected.account_name}}</ui-select-match>
+            <ui-select-choices repeat="adAccount.account_id as adAccount in preparedAdAccounts | propsFilter: {account_name: $select.search}">
+              <div ng-bind-html="adAccount.account_name | highlight: $select.search"></div>
+            </ui-select-choices>
+          </ui-select>
+          <div class="checkbox abc-checkbox activityCheckbox" >
+            <input type="checkbox" ng-model="accountsActiveOnly" id="accountsActiveOnly" ng-change="activeAccountsChange()">
+            <label for="accountsActiveOnly">
+              Active Only
+            </label>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label label-inline" for="type_id">Adset:</label>
+          <ui-select id="type_id" name="typeId" ng-model="vm.alert.typeId" theme="select2" style="width: 50%"  title="Choose an Ad Set" append-to-body="false" required ng-disabled="(vm.alert.adaccount_id == null)" ng-change="generateName()">
+            <ui-select-match placeholder="{{vm.alert.adaccount_id == null ? 'Select Ad Account First' : 'Select Ad Set'}}">{{$select.selected.adset_name}}</ui-select-match>
+            <ui-select-choices repeat="adset.adset_id as adset in preparedAdSets | propsFilter: {adset_name: $select.search}">
+              <div ng-bind-html="adset.adset_name | highlight: $select.search"></div>
+            </ui-select-choices>
+          </ui-select>
+          <div class="checkbox abc-checkbox activityCheckbox" >
+            <input type="checkbox" ng-model="adsetsActiveOnly" id="adsetsActiveOnly" ng-change="changeAdaccount()" ng-disabled="(vm.alert.adaccount_id == null)">
+            <label for="adsetsActiveOnly">
+              Active Only
+            </label>
+          </div><br>
+          <div ng-messages="vm.form.alertForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Adset name is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="story-label control-label">Send me a notification via:</label>
+          <div class="checkbox abc-checkbox activityCheckbox" >
+            <input type="checkbox" ng-model="vm.alert.messengerEnabled" id="messengerEnabled" name="messengerEnabled">
+            <label for="messengerEnabled">
+              FB Messenger
+            </label>
+          </div>
+          <div class="checkbox abc-checkbox activityCheckbox" >
+            <input type="checkbox" ng-model="vm.alert.emailEnabled" id="emailEnabled" name="emailEnabled">
+            <label for="emailEnabled">
+              Email
+            </label>
+          </div>
+          <div class="checkbox abc-checkbox activityCheckbox" >
+            <input type="checkbox" ng-model="vm.alert.smsEnabled" id="smsEnabled" name="smsEnabled" disabled>
+            <label for="smsEnabled">
+              SMS
+            </label>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="story-label control-label">When the</label>
+          <select name="param" id="param" class="form-control"
+                  ng-options="option.name for option in vm.trackingParams track by option.value"
+                  ng-model="vm.alert.param" ng-change="generateName()"></select>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="story-label control-label">is</label>
+          <select name="rule" id="rule" class="form-control"
+                  ng-options="option.name for option in vm.alertRules track by option.value"
+                  ng-model="vm.alert.rule" ng-change="generateName()"></select>
+        </div>
+        <div class="form-group" show-errors>
+          <input name="value" type="text" ng-model="vm.alert.value" id="value" class="form-control" placeholder="Enter value" required ng-change="generateName()">
+        </div>
+        <div class="form-group" show-errors>
+          <label class="story-label control-label">The system will check for this event every</label>
+          <select name="rule" id="period" class="form-control"
+                  ng-options="option.name for option in vm.alertPeriods track by option.value"
+                  ng-model="vm.alert.period"></select>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="story-label control-label">Save this alert as:</label>
+          <input name="name" type="text" ng-model="vm.alert.name" id="name" class="form-control" placeholder="Enter name" required>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="story-label control-label">and on creation, set the status to</label>
+          <select name="rule" id="status" class="form-control"
+                  ng-options="option.name for option in vm.alertStatus track by option.value"
+                  ng-model="vm.alert.status"></select>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">{{vm.alert._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

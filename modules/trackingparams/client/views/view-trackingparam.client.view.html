@@ -1,0 +1,28 @@
+<section>
+  <div class="page-header">
+    <h1 data-ng-bind="vm.trackingparam.name"></h1>
+    <h6 class="list-group-item-heading" data-ng-bind="vm.trackingparam.value"></h6>
+    <p class="list-group-item-heading" data-ng-bind="vm.trackingparam.description"></p>
+  </div>
+  <div class="pull-right"
+       data-ng-show="vm.trackingparam.isCurrentUserOwner">
+    <a class="btn btn-primary"
+       data-ui-sref="trackingparams.edit({ trackingparamId: vm.trackingparam._id })">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" data-ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <small>
+    <em class="text-muted">
+      Posted on
+      <span data-ng-bind="vm.trackingparam.created | date:'mediumDate'"></span>
+      by
+      <span data-ng-if="vm.trackingparam.user"
+            data-ng-bind="vm.trackingparam.user.displayName"></span>
+      <span data-ng-if="!vm.trackingparam.user">Deleted User</span>
+    </em>
+  </small>
+  <p class="lead" data-ng-bind="vm.trackingparam.content"></p>
+</section>

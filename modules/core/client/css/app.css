@@ -1,0 +1,26 @@
+.main-jumbotron-bot{
+    margin: 1em auto;
+    background: #000000;
+
+}
+.btn-primary-shared{
+    background: #5fd3ff;
+    border-color: #5fd3ff;
+    color: #FFFFFF;
+}
+.btn-primary-shared:hover{
+    color: #f4feff;
+
+}
+.btn-primary-bot{
+    background: #850001;
+    border-color: #850001;
+    color: #FFFFFF;
+}
+.btn-primary-bot:hover{
+    color: #f4feff;
+
+}
+
+
+

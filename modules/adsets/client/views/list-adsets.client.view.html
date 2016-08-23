@@ -1,0 +1,44 @@
+<section>
+  <div class="page-header">
+    <h1>Adsets</h1>
+  </div>
+  <div tasty-table bind-resource-callback="vm.getResource" bind-init="vm.init"   bind-filters="vm.filterBy" watch-resource="collection" class="container">
+
+    <table data-ng-show="rows.length !== 0 || vm.filterBy.adset_name" class="table ng-tasty table-striped">
+      <thead tasty-thead>
+      </thead>
+      <tbody>
+      <tr>
+        <td></td>
+        <td>
+          <input type="text" class="form-control input-sm ng-tasty-filter" placeholder="Adset Name filter" ng-model="vm.filterBy.adset_name" />
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        <tr data-ng-repeat="row in rows" >
+          <td ><small data-ng-bind="row.camp_name"></small></td>
+          <td ><small data-ng-bind="row.adset_name"></small></td>
+          <td ><small data-ng-bind="row.adset_id"></small></td>
+          <td ><small data-ng-bind="row.status"></small></td>
+          <td ><small data-ng-bind="row.reach"></small></td>
+          <td ><small data-ng-bind="row.daily_budget"></small></td>
+          <td ><small data-ng-bind="row.amount_spent"></small></td>
+          <td ><small data-ng-bind="row.schedule"></small></td>
+          <td><small data-ng-bind="row.type"></small></td>
+          <td ><small data-ng-bind="row.user.displayName"></small></td>
+        </tr>
+      </tbody>
+    </table>
+    <div tasty-pagination data-ng-show="rows.length !== 0 || vm.filterBy.adset_name"></div>
+  </div>
+  <div class="alert alert-warning text-center" data-ng-if="vm.adsets.$resolved && !vm.adsets.length">
+    There are no alerts Adsets
+  </div>
+</section>

@@ -1,0 +1,22 @@
+<section ng-controller="HomeController">
+  <div class="jumbotron text-center main-jumbotron-bot">
+    <div class="row">
+      <div  class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
+        <img alt="AutoBot" class="img-responsive text-center" src="modules/core/client/img/brand/autobot.jpg" />
+      </div>
+    </div>
+    <br>
+
+    <div class="row">
+      <p ng-hide="authentication.user">
+        <a class="btn btn-primary-bot btn-lg" href="authentication/signin" >Sign In</a>
+      </p>
+      <p ng-show="authentication.user">
+        <a class="btn btn-primary-bot btn-lg" href="settings/profile" >User Settings</a>
+      </p>
+    </div>
+  </div>
+
+
+
+</section>
